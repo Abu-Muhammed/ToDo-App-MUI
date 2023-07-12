@@ -2,6 +2,12 @@ import React from "react";
 import { useState } from "react";
 import AddTodoStyles from "./add-todo.module.css";
 
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { Stack } from "@mui/material";
+
 const AddTodo = ({ addTodo }) => {
   const [newTodo, setNewTodo] = useState("");
 
@@ -18,18 +24,37 @@ const AddTodo = ({ addTodo }) => {
   }
 
   return (
-    <div className={AddTodoStyles.container}>
-      <input
-        value={newTodo}
-        className={AddTodoStyles.todoInput}
-        placeholder="Add new todo"
-        onChange={handleChange}
-        onKeyDown={checkEnter}
-      />
-      <button className={AddTodoStyles.addTodoButton} onClick={handleClick}>
-        Add Todo
-      </button>
-    </div>
+  
+    <Box display="flex" flexDirection="column" alignItems="center">
+      <main>
+        <Typography variant="h3" component="h2" sx={{marginTop:"10px" ,marginBottom:"17px" }}>
+            List Your ToDos
+        </Typography>
+      </main>
+      <Stack direction="row" spacing={1} alignItems="center" justifyContent="centre">
+        <TextField
+          label="Add new todo"
+          variant="outlined"
+          size="small"
+          inputProps={{ style: { fontSize: 26 } }}
+          onKeyDown={checkEnter}
+          onChange={handleChange}
+          value={newTodo}
+          className={AddTodoStyles.todoInput}
+        />
+        <Button
+          sx={{ padding: "12px" }}
+          variant="contained"
+          onClick={handleClick}
+          className={AddTodoStyles.addTodoButton}
+        >
+          Add Todo
+        </Button>
+      </Stack>
+    </Box>
+            
+   
+    
   );
 };
 

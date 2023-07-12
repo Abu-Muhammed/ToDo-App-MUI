@@ -1,25 +1,45 @@
 import React from "react";
 import TodosStyles from "./todos.module.css";
 
-const { todoWrapper, todoLabel, tickIcon } = TodosStyles;
+import Box from "@mui/material/Box/Box";
+import { Typography } from "@mui/material";
+
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+const { todoWrapper, todoLabel } = TodosStyles;
 
 const Todo = ({ todo, handleAction, index, actionIcon, isComplete }) => {
   return (
-    <div className={`${todoWrapper}`}>
-      <span
-        style={{ textDecoration: isComplete ? "line-through" : "none" }}
-        className={todoLabel}
-      >
+    <Box className={`${todoWrapper}`}>
+      <Typography style={{ textDecoration: isComplete ? "line-through" : "none" }}
+        className={todoLabel}>
         {todo}
-      </span>
-      <img
-        alt="todo-action"
-        onClick={() => handleAction(index)}
-        className={tickIcon}
-        height={15}
-        src={actionIcon}
-      />
-    </div>
+      </Typography>
+      {isComplete ? (
+        <DeleteIcon
+          alt="todo-action"
+          onClick={() => handleAction(index)}
+          sx={{
+              cursor: "pointer",
+              "&:hover": {
+              color: "red",
+              },
+            }}
+        />
+          ) : (
+        <CheckCircleIcon
+          alt="todo-action"
+          onClick={() => handleAction(index)}
+          sx={{
+              cursor: "pointer",
+              "&:hover": {
+              color: "green",
+              },
+            }}
+        />
+            )}
+    </Box>
   );
 };
 

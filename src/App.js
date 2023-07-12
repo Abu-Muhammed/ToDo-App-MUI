@@ -3,6 +3,12 @@ import TodosList from "./components/todos-list";
 import AddTodo from "./components/add-todo";
 import "./App.css";
 import CompletedTodos from "./components/completed-todos";
+import Box from '@mui/material/Box';
+
+import ReorderIcon from '@mui/icons-material/Reorder';
+
+import { AppBar, CssBaseline, Toolbar, Typography } from "@mui/material";
+
 function App() {
   const [todos, setTodos] = useState(["Learn React", "Build Apps"]);
   const [completedTodos, setCompletedTodos] = useState([]);
@@ -24,11 +30,26 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <AddTodo addTodo={addTodo} />
-      <CompletedTodos completedTodos={completedTodos} removeTodo={removeTodo} />
-      <TodosList todos={todos} markTodoAsDone={markTodoAsDone} />
-    </div>
+    <>
+      <Box marginBottom={1}>
+        <CssBaseline />
+        <AppBar position="relative">
+          <Toolbar style={{ justifyContent: "center" }}>
+            <ReorderIcon sx={{marginRight:"10px"}}/>
+            <Typography variant="h4" align="center">
+              Welcome To Todo App
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+
+      <Box marginBottom={1} className="App">
+        <AddTodo addTodo={addTodo} />
+        <CompletedTodos completedTodos={completedTodos} removeTodo={removeTodo} />
+        <TodosList todos={todos} markTodoAsDone={markTodoAsDone} />
+      </Box>
+    </>
+    
   );
 }
 
